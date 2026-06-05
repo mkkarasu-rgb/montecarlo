@@ -9,20 +9,24 @@ st.title("📊 Industrial Gas Cylinder Inventory Simulation")
 st.markdown("Tracking full/empty cylinder cycles, backlogs, and explicit supplier replenishment lead times.")
 
 # --- SIDEBAR INPUTS ---
-st.sidebar.header("1. Simulation Parameters")
-sim_days = st.sidebar.number_input("Simulation Duration (Days)", min_value=10, max_value=365, value=100, step=10)
-initial_full = st.sidebar.number_input("Initial Full Stock", min_value=0, value=345)
-initial_empty = st.sidebar.number_input("Initial Empty Stock", min_value=0, value=0)
-
-st.sidebar.header("2. Daily Demand Distribution")
+st.sidebar.header("1. Daily Demand Distribution")
 demand_mean = st.sidebar.number_input("Mean Daily Demand", min_value=0.0, value=8.0, step=0.5)
 demand_std = st.sidebar.number_input("Demand Std Dev", min_value=0.0, value=2.0, step=0.5)
 
-st.sidebar.header("3. Supplier & Logistics Timeline")
+st.sidebar.header("2. Supplier & Logistics Timeline")
 ship_frequency = st.sidebar.number_input("Ship Empties Every X Days", min_value=1, value=10)
 transit_out = st.sidebar.number_input("Transit Time to Supplier (Days)", min_value=0, value=5)
 filling_time = st.sidebar.number_input("Supplier Filling Time (Days)", min_value=0, value=20)
 transit_in = st.sidebar.number_input("Transit Time Back to Warehouse (Days)", min_value=0, value=5)
+
+tot_lt= transit_out + filling_time + transit_in + ship_frequency
+calc_init_stock= demand_mean * tot_lt + 2 * demand_std * np.sqrt(tot_lt)
+
+st.sidebar.header("3. Simulation Parameters")
+sim_days = st.sidebar.number_input("Simulation Duration (Days)", min_value=10, max_value=365, value=100, step=10)
+initial_full = st.sidebar.number_input("Initial Full Stock", min_value=0, value=int(calc_init_stock))
+initial_empty = st.sidebar.number_input("Initial Empty Stock", min_value=0, value=0)
+
 
 # Calculate total turnaround time
 total_lead_time = transit_out + filling_time + transit_in
