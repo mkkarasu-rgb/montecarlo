@@ -140,4 +140,4 @@ if st.sidebar.button("Run Simulation", type="primary"):
     st.plotly_chart(fig, use_container_width=True)
     
     st.subheader("📋 Daily Operations Log")
-    st.dataframe(df_results, use_container_width=True)
+    st.dataframe(df_results, width='content',hide_index=True)
