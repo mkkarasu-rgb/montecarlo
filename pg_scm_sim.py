@@ -25,8 +25,6 @@ calc_init_stock= demand_mean * tot_lt + 2 * demand_std * np.sqrt(tot_lt)
 st.sidebar.header("3. Simulation Parameters")
 sim_days = st.sidebar.number_input("Simulation Duration (Days)", min_value=10, max_value=365, value=100, step=10)
 initial_full = st.sidebar.number_input("Initial Full Stock", min_value=0, value=int(calc_init_stock))
-initial_empty = st.sidebar.number_input("Initial Empty Stock", min_value=0, value=0)
-
 
 # Calculate total turnaround time
 total_lead_time = transit_out + filling_time + transit_in
