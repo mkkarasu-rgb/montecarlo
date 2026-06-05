@@ -11,7 +11,7 @@ st.markdown("Tracking full/empty cylinder cycles, backlogs, and explicit supplie
 # --- SIDEBAR INPUTS ---
 st.sidebar.header("1. Simulation Parameters")
 sim_days = st.sidebar.number_input("Simulation Duration (Days)", min_value=10, max_value=365, value=100, step=10)
-initial_full = st.sidebar.number_input("Initial Full Stock", min_value=0, value=100)
+initial_full = st.sidebar.number_input("Initial Full Stock", min_value=0, value=345)
 initial_empty = st.sidebar.number_input("Initial Empty Stock", min_value=0, value=0)
 
 st.sidebar.header("2. Daily Demand Distribution")
