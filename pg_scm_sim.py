@@ -44,7 +44,6 @@ if st.sidebar.button("Run Simulation", type="primary"):
     
     # State variables
     full_stock = initial_full
-    empty_stock = initial_empty
     backlog = 0
     
     # Track metrics for correct Service Level
